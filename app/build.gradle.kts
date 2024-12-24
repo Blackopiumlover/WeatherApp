@@ -2,8 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    alias(libs.plugins.dagger.hilt)
-    kotlin("kapt")
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -41,6 +41,10 @@ android {
     }
 }
 
+kapt {
+    correctErrorTypes = true
+}
+
 dependencies {
 
     implementation(libs.androidx.core.ktx)
@@ -50,7 +54,7 @@ dependencies {
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
-    implementation(libs.androidx.material3)
+    implementation(libs.androidx.material)
 
     // Retrofit
     implementation(libs.retrofit2)
@@ -60,9 +64,7 @@ dependencies {
     // Dagger-Hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
-    implementation(libs.androidx.hilt.lifecycle.viewmodel)
-    kapt(libs.androidx.hilt.compiler)
-    implementation(libs.androidx.hilt.navigation.compose)
+
 
     // Location Services
     implementation(libs.play.services.location)
